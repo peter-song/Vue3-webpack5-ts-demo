@@ -2,6 +2,9 @@ const path = require('path');
 const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const isDev = process.env.NODE_ENV === 'development'; // 是否是开发模式
 
 module.exports = {
   entry: {
@@ -41,12 +44,21 @@ module.exports = {
       {
         test: /.css$/,
         include: [path.resolve(__dirname, '../src')],
-        use: ['style-loader', 'css-loader', 'postcss-loader'],
+        use: [
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+        ],
       },
       {
         test: /.less$/,
         include: [path.resolve(__dirname, '../src')],
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
+        use: [
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'less-loader',
+        ],
       },
       {
         test: /.(png|jpg|jpeg|gif|svg)$/,
