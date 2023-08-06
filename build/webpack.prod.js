@@ -29,7 +29,7 @@ module.exports = merge(baseConfig, {
     }),
 
     new MiniCssExtractPlugin({
-      filename: 'static/css/[name].css', // 抽离css的输出目录和名称
+      filename: 'static/css/[name].[contenthash:8].css', // 抽离css的输出目录和名称
     }),
   ],
 

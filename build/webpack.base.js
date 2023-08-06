@@ -12,7 +12,7 @@ module.exports = {
   },
 
   output: {
-    filename: 'static/js/[name].js',
+    filename: 'static/js/[name].[chunkhash:8].js',
     path: path.resolve(__dirname, '../dist'),
     clean: true,
     publicPath: '/',
@@ -69,7 +69,7 @@ module.exports = {
           },
         },
         generator: {
-          filename: 'static/images/[name][ext]', // 文件输入目录和命名
+          filename: 'static/images/[name].[contenthash:8][ext]', // 文件输入目录和命名
         },
       },
       {
@@ -81,7 +81,7 @@ module.exports = {
           }
         },
         generator: {
-          filename: 'static/fonts/[name][ext]', // 文件输出目录和命名
+          filename: 'static/fonts/[name].[contenthash:8][ext]', // 文件输出目录和命名
         },
       },
       {
@@ -93,7 +93,7 @@ module.exports = {
           }
         },
         generator: {
-          filename: 'static/media/[name][ext]', // 文件输出目录和命名
+          filename: 'static/media/[name].[contenthash:8][ext]', // 文件输出目录和命名
         },
       },
     ],
