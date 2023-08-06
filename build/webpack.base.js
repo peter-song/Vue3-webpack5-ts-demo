@@ -26,27 +26,8 @@ module.exports = {
         use: 'vue-loader',
       },
       {
-        test: /.ts$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              [
-                '@babel/preset-env',
-                {
-                  'useBuiltIns': 'usage', // 根据配置的浏览器兼容，以及代码中使用到的api进行引入polyfill按需添加
-                  'corejs': 3, // 配置使用core-js低版本
-                },
-              ],
-              [
-                '@babel/preset-typescript',
-                {
-                  allExtensions: true,
-                }
-              ],
-            ],
-          },
-        },
+        test: /.tsx?$/,
+        use: 'babel-loader',
       },
       {
         test: /.(css|less)$/,
