@@ -13,8 +13,8 @@
 </template>
 
 <script setup lang="ts">
-  import smallImg from './assets/imgs/logo-4kb.png'
-  import bigImg from './assets/imgs/ape-76kb.jpg'
+  import smallImg from '@/assets/imgs/logo-4kb.png'
+  import bigImg from '@/assets/imgs/ape-76kb.jpg'
   import './app.css';
   import './app.less';
 </script>
