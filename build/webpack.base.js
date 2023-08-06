@@ -23,20 +23,15 @@ module.exports = {
     rules: [
       {
         test: /.vue$/,
-        use: 'vue-loader',
+        use: ['thread-loader', 'vue-loader'],
       },
       {
         test: /.tsx?$/,
-        use: 'babel-loader',
+        use: ['thread-loader', 'babel-loader'],
       },
       {
         test: /.(css|less)$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          'less-loader',
-        ],
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
       },
       {
         test: /.(png|jpg|jpeg|gif|svg)$/,
