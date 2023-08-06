@@ -26,10 +26,12 @@ module.exports = {
   module: {
     rules: [
       {
+        include: [path.resolve(__dirname, '../src')], // 只对项目src文件的vue进行loader解析
         test: /.vue$/,
         use: ['thread-loader', 'vue-loader'],
       },
       {
+        include: [path.resolve(__dirname, '../src')], // 只对项目src文件的ts进行loader解析
         test: /.tsx?$/,
         use: ['thread-loader', 'babel-loader'],
       },
