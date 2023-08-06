@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -50,6 +51,11 @@ module.exports = {
       filename: 'index.html',
       template: path.resolve(__dirname, '../public/index.html'),
       inject: true,
+    }),
+
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.BASE_ENV': JSON.stringify(process.env.BASE_ENV),
     }),
   ],
 };
