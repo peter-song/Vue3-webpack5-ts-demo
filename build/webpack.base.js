@@ -43,7 +43,19 @@ module.exports = {
       },
       {
         test: /.(css|less)$/,
-        use: ['style-loader', 'css-loader', 'less-loader'],
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: ['autoprefixer'],
+              },
+            },
+          },
+          'less-loader',
+        ],
       },
     ],
   },
