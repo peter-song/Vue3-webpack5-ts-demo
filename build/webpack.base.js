@@ -21,6 +21,9 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, '../src'),
     },
+
+    // 查找第三方模块在本项目的node_modules中查找
+    modules: [path.resolve(__dirname, '../node_modules')],
   },
 
   module: {
