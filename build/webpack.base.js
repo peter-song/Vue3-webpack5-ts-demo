@@ -36,7 +36,13 @@ module.exports = {
         use: ['thread-loader', 'babel-loader'],
       },
       {
-        test: /.(css|less)$/,
+        test: /.css$/,
+        include: [path.resolve(__dirname, '../src')],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      },
+      {
+        test: /.less$/,
+        include: [path.resolve(__dirname, '../src')],
         use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
       },
       {
