@@ -3,6 +3,7 @@ const { merge } = require('webpack-merge');
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const baseConfig = require('./webpack.base.js');
 
@@ -20,7 +21,7 @@ module.exports = merge(baseConfig, {
           // filter: source => {
           //   return !source.includes('index.html');
           // },
-          globOptions: { 
+          globOptions: {
             ignore: ['**/index.html'], // 忽略html文件不进行复制
           },
         },
@@ -35,6 +36,16 @@ module.exports = merge(baseConfig, {
   optimization: {
     minimizer: [
       new CssMinimizerPlugin(), // 压缩css
+
+      // 压缩js
+      new TerserPlugin({
+        parallel: true, // 开启多线程压缩
+        terserOptions: {
+          compress: {
+            pure_funcs: ['console.log'], // 删除console.log
+          },
+        },
+      }),
     ],
   },
 });
