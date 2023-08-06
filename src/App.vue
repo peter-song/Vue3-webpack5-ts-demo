@@ -5,7 +5,8 @@
 </template>
 
 <script setup lang="ts">
-
+  import './app.css';
+  import './app.less';
 </script>
 
 <style scoped>
