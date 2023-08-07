@@ -6,6 +6,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
 const globAll = require('glob-all');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const baseConfig = require('./webpack.base.js');
 
@@ -45,6 +46,15 @@ module.exports = merge(baseConfig, {
       safelist: {
         standard: [/^el-/], // 过滤以el-开头的类名，哪怕没用到也不删除
       },
+    }),
+
+    // 打包生成gzip文件
+    new CompressionPlugin({
+      test: /.(js|css)$/,
+      filename: '[path][base].gz',
+      algorithm: 'gzip',
+      threshold: 10 * 1024,
+      minRatio: 0.8,
     }),
   ],
 
