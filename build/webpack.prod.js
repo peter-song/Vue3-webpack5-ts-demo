@@ -4,13 +4,15 @@ const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
+const globAll = require('glob-all');
 
 const baseConfig = require('./webpack.base.js');
 
 module.exports = merge(baseConfig, {
   mode: 'production',
 
-  devtool: 'source-map',
+  // devtool: 'source-map',
 
   plugins: [
     new CopyPlugin({
@@ -30,6 +32,19 @@ module.exports = merge(baseConfig, {
 
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[contenthash:8].css', // 抽离css的输出目录和名称
+    }),
+
+    // 清理无用css
+    new PurgeCSSPlugin({
+      // 检测src下所有vue文件和public下index.html中使用的类名和id的标签名称
+      // 只打包这些文件中用到的样式
+      paths: globAll.sync([
+        `${path.resolve(__dirname, '../src')}/**/*.vue`,
+        path.resolve(__dirname, '../public/index.html'),
+      ]),
+      safelist: {
+        standard: [/^el-/], // 过滤以el-开头的类名，哪怕没用到也不删除
+      },
     }),
   ],
 
